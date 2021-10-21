@@ -16,7 +16,20 @@ function Signup() {
 
   function inputOnChange(e) {
     const name = e.target.name;
+    if (name === "picture") {
+      const file = e.target.files[0];
+      const reader = new FileReader();
+      reader.onload = (read) => {
+        const asString = btoa(read.target.result);
+        setUserInput({
+          ...userInput,
+          profile_picture: asString,
+        })
+      };
+      reader.readAsBinaryString(file);
+    }
     const value = e.target.value;
+    console.log(value)
     setUserInput({
       ...userInput,
       [name]: value,
@@ -72,9 +85,14 @@ function Signup() {
           control={Input}
           label="Profile Picture"
           name="picture"
+          type="file"
+          accept=".jpeg, .png, .jpg"
           placeholder="Profile Picture"
           onChange={inputOnChange}
         />
+
+
+        
 
         <Button type="submit">
           <Icon name="signup" />

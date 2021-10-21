@@ -27,7 +27,7 @@ export const signup = createAsyncThunk("user/signup", (userInput) =>
 const userSlice = createSlice({
   name: "user",
   initialState: {
-    value: null, 
+    value: [], 
   },
   reducers: {},
   extraReducers: {
