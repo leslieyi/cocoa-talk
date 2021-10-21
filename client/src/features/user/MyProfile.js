@@ -12,6 +12,7 @@ function MyProfile() {
       <h1>username:{user.username}</h1>
       <h1>picture:</h1>
       <img
+      alt="profile pic"
         src={
             user.profile_picture? 
              `data:image/png;base64,${user.profile_picture}` : DefaultProfile

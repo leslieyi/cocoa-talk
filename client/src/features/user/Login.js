@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Form, Input, Button, Header, Segment, Icon } from "semantic-ui-react";
+import { Button, Form, Header, Icon, Input } from "semantic-ui-react";
 import { login, selectErrors } from "./userSlice";
 
 function Login() {

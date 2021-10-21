@@ -5,3 +5,11 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+puts "Seeding..."
+
+Post.create(text: "testing testing testing", user_id:1)
+Post.create(text: "testing testing testing123", user_id:1)
+Post.create(text: "testing testing testing234", user_id:1)
+
+puts "Done Seeding!"

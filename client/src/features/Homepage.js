@@ -2,8 +2,9 @@ import { Redirect, Route, Switch } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { selectUser } from "./user/userSlice";
 import Auth from "./user/Auth";
-import MyProfile from "./user/MyProfile"
-import PostContainer from "./post/PostContainer"
+import MyProfile from "./user/MyProfile";
+import PostContainer from "./post/PostContainer";
+import PostForm from "./post/PostForm";
 
 function Homepage() {
   const user = useSelector(selectUser);
@@ -22,6 +23,10 @@ function Homepage() {
 
         <Route exact path="/">
           <PostContainer/>
+        </Route>
+
+        <Route exact path="/create-posts">
+          <PostForm/>
           </Route>
 
         <Route exact path="/my-profile">
