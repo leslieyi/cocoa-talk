@@ -55,7 +55,7 @@ function PostForm() {
           name="input"
           autoComplete="off"
           type="text"
-          placeHolder="Start Writing..."
+          placeholder="Start Writing..."
           control={TextArea}
           onChange={handleInputChange}
         />

@@ -41,6 +41,6 @@ class PostsController < ApplicationController
   end
 
   def post_params
-    params.permit(:text)
+    params.permit(:text, :user_id)
   end
 end
