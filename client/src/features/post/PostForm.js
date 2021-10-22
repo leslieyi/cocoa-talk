@@ -41,9 +41,8 @@ function PostForm() {
     <div
       style={{
         textAlign: "center",
-        paddingRight: "200px",
-        paddingLeft: "200px",
-        paddingBottom: "50px",
+        padding: "0 200px 50px 200px",
+     
       }}
     >
           {errors.map((error) => (

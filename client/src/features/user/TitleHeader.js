@@ -1,19 +1,26 @@
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
-import { Menu, Popup } from "semantic-ui-react";
+import { Menu, Popup, Header} from "semantic-ui-react";
 import { logout, selectUser } from "./userSlice";
+import  Logo  from "../../../src/photos/cocoa.png"
+
 
 function TitleHeader() {
   const dispatch = useDispatch();
   const user = useSelector(selectUser);
-
   const handleLogout = () => {
     dispatch(logout());
   };
 
   return (
     <div>
-      <h1>Cocoa Talk Title Header HERE</h1>
+      <div style={{margin: "20px"}}>
+      <Header as="h1" style={{ display: "inline",}}> Cocoa Talk  </Header>
+ 
+      <img src={Logo} style= {{verticalAlign: "middle", display: "inline", width:"45px", height:"45px",  }}/>
+
+      </div>
+
       {user ? (
         <Menu inverted pointing secondary>
           <NavLink
@@ -30,18 +37,7 @@ function TitleHeader() {
             />
           </NavLink>
 
-          <NavLink
-            to="/create-posts"
-            style={{ color: "white", fontSize: "20px", margin: "0px 10px 0px 10px",verticalAlign: "middle" }}
-            activeStyle={{ fontWeight: "bold" }}
-          >
-            Post
-            <img
-            alt=""
-              src="https://img.icons8.com/doodle/48/000000/typewriter-with-paper.png"
-              style={{ width: "30%", margin: "10px", verticalAlign: "middle" }}
-            />
-          </NavLink>
+  
 
           <NavLink
             to="/my-profile"

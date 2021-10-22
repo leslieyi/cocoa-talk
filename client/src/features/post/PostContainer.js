@@ -1,17 +1,21 @@
 import { useSelector } from "react-redux";
-// import { selectUser } from "../user/userSlice";
-import { selectPosts } from "./postsSlice";
+import { selectIsLoading, selectPosts } from "./postsSlice";
 import PostCard from "./PostCard";
 import PostForm from "./PostForm";
+
+import "./Post.css";
+
 function PostContainer() {
-  // const user = useSelector(selectUser);
   const posts = useSelector(selectPosts);
+  const isLoading = useSelector(selectIsLoading);
 
   return (
     <div>
-      <h1>Posts here, which will act as a main home page</h1>
+      {isLoading ? (
+      <div class="loading">Loading&#8230;</div>
+      ) : null}
+      
       <PostForm />
-
       {posts.map((post) => (
         <PostCard post={post} key={post.id} />
       ))}

@@ -4,7 +4,7 @@ import { selectUser } from "./user/userSlice";
 import Auth from "./user/Auth";
 import MyProfile from "./user/MyProfile";
 import PostContainer from "./post/PostContainer";
-import PostForm from "./post/PostForm";
+import OnePostContainer from "./post/OnePostContainer";
 
 function Homepage() {
   const user = useSelector(selectUser);
@@ -12,7 +12,6 @@ function Homepage() {
   if (!user) return <Auth />;
   return (
     <div>
-      <h1> Homepage will render here</h1>
       <Switch>
         <Route exact path="/login">
           <Redirect to="/" />
@@ -22,12 +21,12 @@ function Homepage() {
         </Route>
 
         <Route exact path="/">
-          <PostContainer/>
+          <PostContainer />
         </Route>
 
-        <Route exact path="/create-posts">
-          <PostForm/>
-          </Route>
+        <Route path="/posts/:id">
+          <OnePostContainer />
+        </Route>
 
         <Route exact path="/my-profile">
           <MyProfile />
