@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { Button, Form, TextArea } from "semantic-ui-react";
+import { Button, Form, TextArea, Header } from "semantic-ui-react";
 import { fetchPosts } from "./postsSlice";
 
 function PostForm() {
@@ -41,24 +41,26 @@ function PostForm() {
     <div
       style={{
         textAlign: "center",
-        padding: "0 200px 50px 200px",
-     
+        justifyContent: "center",
+        padding: "0 350px 50px 350px",
       }}
     >
-          {errors.map((error) => (
+      {errors.map((error) => (
         <h4>{error}</h4>
       ))}
-      <Form id="todo-form" onSubmit={handleSubmit}>
-        <Form.Field
-          label="New Message:"
+
+      <Form onSubmit={handleSubmit} style={{ textAlign: "center" }}>
+        <Header as="h2" style={{ margin: "20px" }}>
+          Start Typing...
+        </Header>
+        <TextArea
+          style={{ minHeight: 250 }}
           name="input"
           autoComplete="off"
-          type="text"
           placeholder="Start Writing..."
-          control={TextArea}
           onChange={handleInputChange}
         />
-        <Button type="submit" className="submit-button">
+        <Button type="submit" style={{ margin: "20px" }}>
           Submit
         </Button>
       </Form>

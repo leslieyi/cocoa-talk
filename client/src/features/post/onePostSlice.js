@@ -8,13 +8,12 @@ export const fetchOnePost = createAsyncThunk(
   const onePostSlice = createSlice({
     name: "onePost",
     initialState: {
-      value: []
+      value: null
     },
 
     extraReducers: {
       [fetchOnePost.fulfilled](state, action) {
         state.value = action.payload;
-        state.editing = null;
       },
     },
   });

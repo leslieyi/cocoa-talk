@@ -42,12 +42,12 @@ function Signup() {
   }
 
   return (
-    <div>
+    <div style={{textAlign: "center"}}>
       <Header as="h2">Sign Up</Header>
       {errors.map((error) => (
         <h2>{error}</h2>
       ))}
-      <Form onSubmit={handleSubmit}>
+      <Form onSubmit={handleSubmit} style={{padding:"10px 150px 0 150px"}}>
         <Form.Group widths="equal">
           <Form.Field
             id="form-input-control-username"

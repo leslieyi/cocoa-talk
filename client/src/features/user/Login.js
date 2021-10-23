@@ -28,7 +28,7 @@ function Login() {
 
   return (
     <div>
-      <Form onSubmit={loginSubmit} float="right">
+      <Form onSubmit={loginSubmit} float="right" style={{padding:"10px 350px 0 350px"}}>
         <Header as="h2">Login</Header>
 
         <Form.Field

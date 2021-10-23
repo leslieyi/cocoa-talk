@@ -210,7 +210,12 @@ function PostCard({ post: { user }, post }) {
             <Button onClick={handleEditButton}>cancel</Button>
           </Form>
         ) : (
-          <p>Post: {postInput.text}</p>
+          <>
+            <p>{postInput.text}</p>
+            <Link to={"/posts/" + `${post.id}`}>
+              <p>comments: {post.comments.length}</p>
+            </Link>
+          </>
         )}
       </Container>
       <Divider style={{ margin: "0 170px 0 170px" }} />

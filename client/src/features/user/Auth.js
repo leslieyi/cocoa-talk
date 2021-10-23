@@ -5,7 +5,7 @@ import MyProfile from "./MyProfile"
 
 function Auth() {
   return (
-    <div>
+    <div style={{textAlign: "center",}}>
       <h1>Log or Signup to Use the service</h1>
       <Link to="/login">Login</Link>
       <Link to="/signup">Signup</Link>
