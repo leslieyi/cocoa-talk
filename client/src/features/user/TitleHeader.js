@@ -4,7 +4,6 @@ import { Menu, Popup, Header } from "semantic-ui-react";
 import { logout, selectUser } from "./userSlice";
 import Logo from "../../../src/photos/cocoa.png";
 
-
 function TitleHeader() {
   const dispatch = useDispatch();
   const user = useSelector(selectUser);
@@ -15,13 +14,12 @@ function TitleHeader() {
   return (
     <div>
       <div style={{ margin: "20px" }}>
-  
-
         <Header as="h1" style={{ display: "inline" }}>
           Cocoa Talk{" "}
         </Header>
 
         <img
+          alt=""
           src={Logo}
           style={{
             verticalAlign: "middle",

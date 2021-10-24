@@ -12,13 +12,14 @@ function PostContainer() {
   return (
     <div>
       {isLoading ? (
-      <div class="loading">Loading&#8230;</div>
+      <div className="loading">Loading&#8230;</div>
       ) : null}
       
       <PostForm />
       {posts.map((post) => (
         <PostCard post={post} key={post.id} />
       ))}
+  
     </div>
   );
 }

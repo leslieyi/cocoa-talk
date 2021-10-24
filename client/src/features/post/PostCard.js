@@ -4,30 +4,34 @@ import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 import { useState } from "react";
-import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 import {
   Button,
   Container,
+  Divider,
   Form,
   Header,
   Icon,
-  TextArea,
-  Divider,
   Popup,
+  TextArea,
 } from "semantic-ui-react";
 import DefaultProfile from "../../photos/placeholder.png";
 import { selectUser } from "../user/userSlice";
-import { fetchPosts } from "./postsSlice";
 import "./Post.css";
+import { fetchPosts } from "./postsSlice";
 
-function PostCard({ post: { user }, post }) {
+function PostCard({
+  post: { user, updated_at, created_at, date, updated_date },
+  post,
+}) {
   const currentUser = useSelector(selectUser);
   const [toggleEdit, setToggleEdit] = useState(false);
   const [postInput, setPostInput] = useState({ ...post });
   const [errors, setErrors] = useState([]);
   const [open, setOpen] = useState(false);
   const dispatch = useDispatch();
+  const [expand, setExpand] = useState(false);
 
   const handleEditButton = () => {
     setToggleEdit(!toggleEdit);
@@ -88,13 +92,34 @@ function PostCard({ post: { user }, post }) {
             height: "40px",
             borderRadius: "50%",
             verticalAlign: "middle",
-            horizontalAlign: "middle",
             objectFit: "cover",
+            marginBottom: "10px",
           }}
         />
-        <Header as="h2" style={{ display: "inline" }}>
+        <Header as="h2" style={{ display: "inline", marginRight: "10px" }}>
           {user.username}
         </Header>
+        {updated_at === created_at ? (
+          <Header
+            style={{
+              fontWeight: "lighter",
+              fontSize: "12px",
+              display: "inline",
+            }}
+          >
+            Posted: {date}
+          </Header>
+        ) : (
+          <Header
+            style={{
+              fontWeight: "lighter",
+              fontSize: "12px",
+              display: "inline",
+            }}
+          >
+            Updated: {updated_date}
+          </Header>
+        )}
 
         {currentUser.id === user.id ? (
           <div style={{ display: "inline", marginLeft: "20px" }}>
@@ -102,10 +127,11 @@ function PostCard({ post: { user }, post }) {
               content="Edit Post"
               trigger={
                 <img
+                  alt=""
                   className="zoom2"
                   onClick={handleEditButton}
                   src="https://img.icons8.com/doodle/48/000000/notability.png"
-                  style={{ width: "30px", height: "30px" }}
+                  style={{ width: "30px", height: "30px", cursor: "pointer" }}
                 />
               }
             />
@@ -114,10 +140,11 @@ function PostCard({ post: { user }, post }) {
               content="Delete Post"
               trigger={
                 <img
+                  alt=""
                   className="zoom1"
                   onClick={handleClickOpen}
                   src="https://img.icons8.com/doodle/48/000000/delete-sign.png"
-                  style={{ width: "30px", height: "30px" }}
+                  style={{ width: "30px", height: "30px", cursor: "pointer" }}
                 />
               }
             />
@@ -126,16 +153,16 @@ function PostCard({ post: { user }, post }) {
               content="Go to Post"
               trigger={
                 <img
-                  className="zoom3"
                   alt=""
+                  className="zoom3"
                   src="https://img.icons8.com/doodle/48/000000/typewriter-with-paper.png"
-                  style={{ width: "30px", height: "30px" }}
+                  style={{ width: "30px", height: "30px", cursor: "pointer" }}
                 />
               }
             />
           </div>
         ) : (
-          <Link to={"/posts/" + `${post.id}`}>
+          <Link to={`/posts/${post.id}`}>
             <Popup
               content="Go to Post"
               trigger={
@@ -211,8 +238,29 @@ function PostCard({ post: { user }, post }) {
           </Form>
         ) : (
           <>
-            <p>{postInput.text}</p>
-            <Link to={"/posts/" + `${post.id}`}>
+            <p style={{ font: "26px" }}>
+              {postInput.text.length < 500 ? (
+                postInput.text
+              ) : (
+                <>
+                  {expand ? postInput.text : postInput.text.substring(0, 500)}
+                  <span
+                    style={{
+                      font: "24px",
+                      color: "#2a9d8f",
+                      cursor: "pointer",
+                    }}
+                    onClick={() => setExpand(!expand)}
+                  >
+                    {expand ? "   View Less" : "...See More"}
+                  </span>
+                </>
+              )}
+            </p>
+            <Link
+              to={`/posts/${post.id}`}
+              style={{ font: "24pxxs", color: "#005f73" }}
+            >
               <p>comments: {post.comments.length}</p>
             </Link>
           </>
