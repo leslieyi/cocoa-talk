@@ -24,10 +24,20 @@ export const signup = createAsyncThunk("user/signup", (userInput) =>
   }).then((res) => res.json())
 );
 
+export const editUser = createAsyncThunk("user/editUser", (userInput) =>
+  fetch("edit-profile", {
+    method: "PATCH",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(userInput),
+  })
+    .then((res) => res.json())
+    .then((data) => data.json())
+);
+
 const userSlice = createSlice({
   name: "user",
   initialState: {
-    value: [], 
+    value: [],
   },
   reducers: {},
   extraReducers: {
@@ -49,6 +59,13 @@ const userSlice = createSlice({
     },
     [signup.fulfilled](state, action) {
       state.value = action.payload;
+      state.loading = false;
+    },
+    [signup.pending](state) {
+      state.loading = true;
+    },
+    [signup.rejected](state) {
+      state.loading = true;
     },
   },
 });
@@ -65,5 +82,6 @@ export const selectErrors = (state) => {
 
 export const selectIsLoading = (state) => state.user.loading;
 
-
+// export const selectSingupLoading = (state) => state.signup.loading;
+//
 export default userSlice.reducer;

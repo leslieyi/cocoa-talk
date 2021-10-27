@@ -21,9 +21,11 @@ function MyProfile() {
   const [edit, setEdit] = useState(false);
   const [errors, setErrors] = useState([]);
   const [userInput, setUserInput] = useState({ ...user });
+  const [loading, setLoading] = useState(false);
 
   function handleSubmit(e) {
     e.preventDefault();
+    setLoading(true)
     fetch("edit-profile", {
       method: "PATCH",
       headers: { "Content-Type": "application/json" },
@@ -31,13 +33,16 @@ function MyProfile() {
     })
       .then((res) => res.json())
       .then((data) => {
+        setLoading(false)
         if (data.errors) {
           setErrors(data.errors);
+
         } else {
           dispatch(fetchUser());
           setEdit(!edit);
         }
       });
+    
   }
 
   function inputOnChange(e) {
@@ -66,6 +71,8 @@ function MyProfile() {
   return (
     <div>
       {isLoading ? <div className="loading">Loading&#8230;</div> : null}
+      
+
       <Card style={{ margin: "40px auto auto auto" }}>
         <Image
           src={
@@ -88,6 +95,10 @@ function MyProfile() {
 
       {edit ? (
         <Form onSubmit={handleSubmit} style={{ padding: "10px 150px 0 150px" }}>
+           {loading ? <div className="loading">Loading&#8230;</div> : null}
+          {errors.map((error) => (
+            <h2>{error}</h2>
+          ))}
           <Form.Group widths="equal">
             <Form.Field
               id="form-input-control-username"
@@ -97,6 +108,7 @@ function MyProfile() {
               placeholder="Username"
               autoComplete="off"
               onChange={inputOnChange}
+              value={userInput.username}
             />
 
             <Form.Field
