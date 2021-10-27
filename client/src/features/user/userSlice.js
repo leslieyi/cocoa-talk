@@ -33,6 +33,13 @@ const userSlice = createSlice({
   extraReducers: {
     [fetchUser.fulfilled](state, action) {
       state.value = action.payload;
+      state.loading = false;
+    },
+    [fetchUser.pending](state) {
+      state.loading = true;
+    },
+    [fetchUser.rejected](state) {
+      state.loading = false;
     },
     [logout.fulfilled](state) {
       state.value = null;
@@ -55,5 +62,8 @@ export const selectErrors = (state) => {
   const user = state.user.value;
   return user && user.errors ? user.errors : [];
 };
+
+export const selectIsLoading = (state) => state.user.loading;
+
 
 export default userSlice.reducer;

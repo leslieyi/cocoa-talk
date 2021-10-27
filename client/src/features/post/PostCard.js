@@ -14,7 +14,7 @@ import {
   Header,
   Icon,
   Popup,
-  TextArea,
+  TextArea
 } from "semantic-ui-react";
 import DefaultProfile from "../../photos/placeholder.png";
 import { selectUser } from "../user/userSlice";
@@ -27,8 +27,8 @@ function PostCard({
 }) {
   const currentUser = useSelector(selectUser);
   const [toggleEdit, setToggleEdit] = useState(false);
-  const [postInput, setPostInput] = useState({ ...post });
   const [errors, setErrors] = useState([]);
+  const [postInput, setPostInput] = useState({ ...post });
   const [open, setOpen] = useState(false);
   const dispatch = useDispatch();
   const [expand, setExpand] = useState(false);
@@ -58,7 +58,6 @@ function PostCard({
         if (data.errors) {
           setErrors(data.errors);
         } else {
-          // dispatch(fetchPosts());
           setToggleEdit(!toggleEdit);
         }
       });
@@ -234,6 +233,7 @@ function PostCard({
               <Icon name="refresh" />
               Update
             </Button>
+            
             <Button onClick={handleEditButton}>cancel</Button>
           </Form>
         ) : (

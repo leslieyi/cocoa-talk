@@ -12,7 +12,7 @@ function OnePostContainer() {
 
   const dispatch = useDispatch();
   const post = useSelector(selectOnePost);
-
+  
   const refresh = () => dispatch(fetchOnePost(id));
   useEffect(refresh, [id, dispatch]);
 
@@ -88,7 +88,7 @@ function OnePostContainer() {
           </p>
           <CommentForm post_id={id} />
           {post.comments.map((comment) => (
-            <CommentContainer key={comment.id} comment={comment} post_id={id} />
+            <CommentContainer key={comment.id} comment={comment} refresh={refresh} />
           ))}
           <br />
           <br />

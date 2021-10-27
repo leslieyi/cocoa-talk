@@ -2,10 +2,9 @@ import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Button, Form, TextArea } from "semantic-ui-react";
 import { selectUser } from "../user/userSlice";
-import {fetchOnePost} from "../post/onePostSlice"
+import { fetchOnePost } from "../post/onePostSlice";
 
-
-function CommentForm({post_id}) {
+function CommentForm({ post_id }) {
   const [errors, setErrors] = useState([]);
   const [text, setText] = useState("");
   const currentUser = useSelector(selectUser);
@@ -20,8 +19,8 @@ function CommentForm({post_id}) {
     e.preventDefault();
     const newComment = {
       text: text,
-      user_id: currentUser.id, 
-      post_id:  post_id 
+      user_id: currentUser.id,
+      post_id: post_id,
     };
     fetch("/comments", {
       method: "POST",
@@ -45,11 +44,11 @@ function CommentForm({post_id}) {
       {errors.map((error) => (
         <h4>{error}</h4>
       ))}
+
       <Form
         onSubmit={handleSubmit}
         style={{ textAlign: "center", marginTop: "10px" }}
       >
-
         <TextArea
           style={{ minHeight: 15 }}
           name="input"
@@ -57,7 +56,16 @@ function CommentForm({post_id}) {
           placeholder="Start Commenting..."
           onChange={handleInputChange}
         />
-        <Button type="submit" style={{ margin: "20px" }}>
+
+        <Button
+          type="submit"
+          style={{
+            margin: "10px",
+            width: "10%",
+            fontSize: "12px",
+            backgroundColor: "#2a9d8f",
+          }}
+        >
           Submit
         </Button>
       </Form>
