@@ -56,17 +56,7 @@ const userSlice = createSlice({
     },
     [login.fulfilled](state, action) {
       state.value = action.payload;
-    },
-    [signup.fulfilled](state, action) {
-      state.value = action.payload;
-      state.loading = false;
-    },
-    [signup.pending](state) {
-      state.loading = true;
-    },
-    [signup.rejected](state) {
-      state.loading = true;
-    },
+    }
   },
 });
 

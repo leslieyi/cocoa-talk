@@ -90,9 +90,11 @@ function PostCard({
             width: "40px",
             height: "40px",
             borderRadius: "50%",
+            border: "1px solid #474647",
             verticalAlign: "middle",
             objectFit: "cover",
             marginBottom: "10px",
+            marginRight: "10px"
           }}
         />
         <Header as="h2" style={{ display: "inline", marginRight: "10px" }}>
