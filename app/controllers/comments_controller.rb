@@ -17,8 +17,9 @@ class CommentsController < ApplicationController
   end
 
   def update
-    comment = Comment.update!(comment_params)
-    render json: commen, status: :accepted
+    comment = find_comment
+    comment.update!(comment_params)
+    render json: comment, status: :accepted
   end
 
   def destroy

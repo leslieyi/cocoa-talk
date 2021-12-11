@@ -6,6 +6,7 @@ class PostsController < ApplicationController
     posts = Post.all.sort_by(&:created_at).reverse
     render json: posts, status: :ok
   end
+  
 
   # GET /posts/1
   def show
